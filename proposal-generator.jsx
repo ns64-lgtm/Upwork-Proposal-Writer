@@ -320,7 +320,7 @@ async function fetchUrlContent(urlInfo) {
     // For Loom videos — use the oEmbed API to get title/description
     if (type === "loom_video") {
       // Try fetching the page directly via Anthropic API with web_search tool
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -338,7 +338,7 @@ async function fetchUrlContent(urlInfo) {
 
     // For YouTube videos — use web search to get description
     if (type === "youtube_video") {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -355,7 +355,7 @@ async function fetchUrlContent(urlInfo) {
     }
 
     // For Google Docs, Sheets, and other web pages — use web search to find/describe content
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch("/api/messages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -524,7 +524,7 @@ Job:
 ${jobDesc}
 ---${urlContext || ""}`;
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("/api/messages", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -574,7 +574,7 @@ ${profile?.overview ? "Bio: " + profile.overview : ""}
 Return ONLY valid JSON array — no markdown, no backticks. Format:
 [{"question":"...","answer":"..."},...]`;
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("/api/messages", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -685,7 +685,7 @@ FREELANCER: ${freelancerName} — ${freelancerTitle}
 SKILLS: ${skills}
 ${projects ? "PAST RELEVANT WORK: " + projects : ""}`;
 
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("/api/messages", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
